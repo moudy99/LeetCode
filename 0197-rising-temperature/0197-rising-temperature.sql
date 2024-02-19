@@ -1,12 +1,7 @@
 /* Write your T-SQL query statement below */
 
-select W.id 
-from Weather W 
-where W.temperature > (
-select max(temperature) 
-    from Weather 
-    where recordDate= dateadd(day,-1,W.recordDate )
-)
-
+SELECT w1.id
+FROM Weather w1, Weather w2
+WHERE DATEDIFF(day,w2.recordDate, w1.recordDate) = 1 AND w1.temperature > w2.temperature;
 
 
