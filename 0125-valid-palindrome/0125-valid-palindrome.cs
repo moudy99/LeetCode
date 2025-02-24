@@ -4,7 +4,7 @@ public class Solution {
      StringBuilder newStr = new StringBuilder();
      foreach(char c in s)
      {
-         if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+         if (char.IsLetterOrDigit(c))
              newStr.Append(c);
      }
 
