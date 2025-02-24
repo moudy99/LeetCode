@@ -1,19 +1,15 @@
 public class Solution {
     public bool IsPalindrome(string s) {
              if (string.IsNullOrEmpty(s)) return true;
-     StringBuilder newStr = new StringBuilder();
-     foreach(char c in s)
-     {
-         if (char.IsLetterOrDigit(c))
-             newStr.Append(c);
-     }
 
-    string newStr2= newStr.ToString().ToLower();
+
      int first = 0;
-     int last = newStr2.Length - 1;
+     int last = s.Length - 1;
      while (first < last)
      {
-         if (newStr2[first] == newStr2[last])
+        if(!char.IsLetterOrDigit(s[first])) {first++; continue;}
+        if(!char.IsLetterOrDigit(s[last])) {last--; continue;}
+         if (char.ToLower(s[first]) == char.ToLower(s[last]))
          {
              last--;
              first++;
