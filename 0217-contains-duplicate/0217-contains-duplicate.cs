@@ -1,20 +1,12 @@
 public class Solution {
     public bool ContainsDuplicate(int[] nums) {
-        Dictionary<int,bool> numDic = new Dictionary<int, bool>();
- bool result = false;
- for(int i=0; i<nums.Length;i++)
- {
-     if (numDic.ContainsKey(nums[i]))
-         {
+    Dictionary<int,int> dic = new Dictionary<int, int>();
+        foreach(var num in nums)
+        {
+            if(dic.ContainsKey(num)) return true;
+            dic[num] = 1;
+        }
 
-         result = true;
-         }
-         else
-         {
-         numDic.Add(nums[i], true);
-     }
-
- }
- return result; 
-    }
+   return false;
+      }
 }
