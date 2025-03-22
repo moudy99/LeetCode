@@ -21,7 +21,12 @@ public class MyQueue {
     }
     
     public int Peek() {
-        return pushStack.Last();
+       if (popStack.Count == 0 || pushStack.Count() > popStack.Count()) {
+            while (pushStack.Count > 0) {
+                popStack.Push(pushStack.Pop());
+            }
+        }
+        return popStack.Peek();
     }
     
     public bool Empty() {
