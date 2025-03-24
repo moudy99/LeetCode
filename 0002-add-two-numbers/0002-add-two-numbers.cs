@@ -11,45 +11,26 @@
  */
 public class Solution {
     public ListNode AddTwoNumbers(ListNode l1, ListNode l2) {
-        Stack<int> list1 = new Stack<int>();
-        Stack<int> list2 = new Stack<int>();
-        Int64 sumOfTwo=0;
-        // Get Nums Of list 1 =>
-        ListNode curr = l1;
-        while(curr != null)
+// just to start the new list then i will return the next as the first item in the list that added
+        ListNode newList = new ListNode(0); 
+        ListNode curr = newList;
+        int remain = 0;
+
+        while(l1 != null || l2 != null || remain >0)
         {
-            list1.Push(curr.val);
+            int val1 = l1 != null ? l1.val : 0;
+            int val2 = l2 != null ? l2.val : 0;
+
+          int sum =val1+val2+remain;
+            remain = sum /10 ;
+            int newNum = sum % 10;
+
+            curr.next= new ListNode(newNum); 
             curr = curr.next;
-        }
 
-        // Get Nums Of list 2 =>
-         curr= l2;
-        while(curr != null)
-        {
-            list2.Push(curr.val);
-            curr = curr.next;
+           if( l1 != null)  l1 = l1.next;
+         if(l2 != null)  l2 = l2.next;
         }
-        sumOfTwo = convertStackToInt(list1) + convertStackToInt(list2);
-        char[] charArray = sumOfTwo.ToString().ToCharArray();
-       ListNode newList = new ListNode(int.Parse(charArray[charArray.Length -1].ToString()));    
-             curr = newList;
-             ListNode Next = null;
-        for(int i=charArray.Length - 2; i >=0; i--)
-        {
-            Next = new ListNode(int.Parse(charArray[i].ToString()));
-            curr.next = Next;
-            curr = Next;
-        }
-
-        return newList;
-    }
-
-    public Int64 convertStackToInt(Stack<int> nums){
-        StringBuilder s= new StringBuilder();
-        while(nums.Count >0)
-        {
-            s.Append(nums.Pop());
-        }
-        return Convert.ToInt64(s.ToString());
+        return newList.next;
     }
 }
