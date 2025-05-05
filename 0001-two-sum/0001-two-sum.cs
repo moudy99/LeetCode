@@ -1,34 +1,22 @@
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
-        int[] clone = nums.Clone() as int[];
-     int first = 0; 
-     int last = nums.Length -1;
-        Array.Sort(clone);    
+     Dictionary<int,int> dic = new Dictionary<int,int>();
 
-     if(nums.Length == 2)
+     for(int i=0; i<nums.Length; i++)
      {
-         return new int[] { 0, 1 };
-     }
-     while(first < last)
-     {
-        if((clone[first] + clone[last]) == target)
+        int completness= target - nums[i];
+        if(dic.ContainsKey(completness))
         {
-            int one = Array.IndexOf(nums, clone[first]);
-            int two = Array.IndexOf(nums, clone[last]);
-            if(one == two)
+            return new int[]{i,dic[completness]};
+        }else
+        {
+            if(!dic.ContainsKey(nums[i]))
             {
-                two = Array.LastIndexOf(nums,clone[last]);
+                dic[nums[i]] = i;
             }
-            return new int[]{one,two};
-        }
-        else if((clone[first] + clone[last]) > target )
-        {
-            last--;
-        }else if((clone[first] + clone[last]) < target)
-        {
-            first++;
         }
      }
-     return new int[] {};
+
+     return new int[]{};
     }
 }
