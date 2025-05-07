@@ -1,4 +1,4 @@
-public class Solution {
+ GC.Collect();public class Solution {
     public int[] GetConcatenation(int[] nums) {
         int[] ans = new int[nums.Length*2];
 
@@ -8,6 +8,7 @@ public class Solution {
             ans[nums.Length + i] = nums[i];
         }
 
+ 
         return ans;
     }
 }
