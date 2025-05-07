@@ -8,7 +8,7 @@ public class Solution {
             ans[nums.Length + i] = nums[i];
         }
 
-
+      GC.Collect();
         return ans;
     }
 }
